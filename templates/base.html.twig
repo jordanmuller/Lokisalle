@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Lokisalle{% endblock %}</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+        {% endblock %}
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container">
+                    <a class="navbar-brand" href="{{ path('home') }}">Lokisalle</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarText">
+                        <ul class="navbar-nav mr-auto">
+                            {% set route = app.request.get('_route') %}
+                            <li class="nav-item {{ route is same as('who') ? active }}">
+                                <a class="nav-link" href="#">Qui sommes-nous
+                                    {% if route is same as('who') %}
+                                        <span class="sr-only">(current)</span>
+                                    {% endif %}
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" {{ route is same as('contact') ? active }}>Contact</a>
+                                {% if route is same as('contact') %} 
+                                        <span class="sr-only">(current)</span>
+                                {% endif %}
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="dropdown show">
+                        <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Espace membre
+                        </a>
+
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            {% if app.user %}
+                                <a class="dropdown-item" href="#">Profil</a>
+                                <a class="dropdown-item" href="#">Déconnexion</a>
+                            {% else %}
+                                <a class="dropdown-item" href="#">Inscription</a>
+                                <a class="dropdown-item" href="#">Connexion</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </nav> 
+        </header>
+
+        <div class="container">
+            {% block body %}{% endblock %}
+        </div>
+
+        <footer>
+            Mentions légales -
+            Conditions générales de vente
+        </footer>
+
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+        {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+        {% endblock %}
+    </body>
+</html>
