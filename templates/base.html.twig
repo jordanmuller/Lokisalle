@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Lokisalle{% endblock %}</title>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
@@ -37,16 +38,16 @@
 
                     <div class="dropdown show">
                         <a class="btn btn-primary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Espace membre
+                            <i class="fas fa-user-tie"></i>   Espace membre
                         </a>
 
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             {% if app.user %}
                                 <a class="dropdown-item" href="#">Profil</a>
-                                <a class="dropdown-item" href="#">Déconnexion</a>
+                                <a class="dropdown-item" href="{{ path('logout') }}">Déconnexion</a>
                             {% else %}
-                                <a class="dropdown-item" href="#">Inscription</a>
-                                <a class="dropdown-item" href="#">Connexion</a>
+                                <a class="dropdown-item" href="{{ path('signup') }}">Inscription</a>
+                                <a class="dropdown-item" href="{{ path('login') }}">Connexion</a>
                             {% endif %}
                         </div>
                     </div>
@@ -59,8 +60,9 @@
         </div>
 
         <footer>
-            Mentions légales -
-            Conditions générales de vente
+            <div class="container">
+                Mentions légales - Conditions générales de vente
+            </div>
         </footer>
 
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

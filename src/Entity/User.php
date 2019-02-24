@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -18,9 +19,33 @@ class User implements UserInterface
     private $id;
 
     /**
+     * @Assert\Email(
+     *     message = "L\'email '{{ value }}' n\'est pas valide"
+     * )
+     * @Assert\NotBlank
      * @ORM\Column(type="string", length=180, unique=true)
      */
     private $email;
+
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(type="string", length=100, nullable=true)
+     */
+    private $firstName;
+
+    /**
+     * @ORM\Column(type="string", columnDefinition="ENUM('m', 'f')", nullable=true)
+     */
+    private $civility;
+
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $dateRegistered;
 
     /**
      * @ORM\Column(type="json")
@@ -32,6 +57,11 @@ class User implements UserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
+    public function __construct()
+    {
+        $this->dateRegistered = new \Datetime();
+    }
 
     public function getId(): ?int
     {

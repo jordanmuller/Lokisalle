@@ -17,7 +17,9 @@ security:
             guard:
                 authenticators:
                     - App\Security\LoginFormAuthenticator
-
+            logout:
+                path:   logout
+                target: /
             # activate different ways to authenticate
 
             # http_basic: true
@@ -25,7 +27,9 @@ security:
 
             # form_login: true
             # https://symfony.com/doc/current/security/form_login_setup.html
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER
 
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
