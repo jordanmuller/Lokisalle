@@ -11,6 +11,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface
 {
+    const CIVILITIES = ['h', 'f'];
+    
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -38,12 +40,12 @@ class User implements UserInterface
     private $firstName;
 
     /**
-     * @ORM\Column(type="string", columnDefinition="ENUM('m', 'f')", nullable=true)
+     * @ORM\Column(type="string", length=2, nullable=true)
      */
     private $civility;
 
     /**
-     * @ORM\Column(type="date", nullable=true)
+     * @ORM\Column(type="datetime", nullable=true)
      */
     private $dateRegistered;
 
@@ -95,7 +97,6 @@ class User implements UserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
@@ -136,5 +137,40 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+        return $this;
+    }
+
+    public function getFirstName(): string
+    {
+        return $this->firstName;
+    }
+
+    public function setFirstName(string $firstName): self
+    {
+        $this->firstName = $firstName;
+        return $this;
+    }
+
+    public function getCivility(): string
+    {
+        return $this->civility;
+    }
+
+    public function setCivility(string $civility): self
+    {
+        if (in_array($civility, self::CIVILITIES)) {
+            $this->civility = $civility;
+        }
+        return $this;
     }
 }
