@@ -11,6 +11,14 @@ class Room
 {
     const CATEGORIES = ['meeting', 'training', 'office'];
 
+    const CAT_TRANS = [
+        'meeting' => 'Réunion',
+        'training' => 'Formation',
+        'office' => 'Bureau'
+    ];
+
+    const CITIES = ['Paris', 'Lyon', 'Marseille'];
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -44,7 +52,7 @@ class Room
     private $city;
 
     /**
-     * @ORM\Column(type="string", length=50)
+     * @ORM\Column(type="string", length=80)
      */
     private $address;
 

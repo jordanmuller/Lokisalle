@@ -3,8 +3,8 @@
 namespace App\Form;
 
 use App\Entity\User;
-use Symfony\Component\Form\{AbstractType, FormBuilderInterface, Extension\Core\Type\EmailType, Extension\Core\Type\PasswordType
-};
+use Symfony\Component\Form\{AbstractType, FormBuilderInterface};
+use Symfony\Component\Form\Extension\Core\Type\{EmailType, PasswordType};
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 

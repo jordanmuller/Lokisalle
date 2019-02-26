@@ -24,7 +24,7 @@ class SecurityController extends AbstractController
     }
     /**
      * @Route(
-     *     "/signup", 
+     *     "/signup",
      *     name="signup",
      *     methods={"GET|POST"}
      * )

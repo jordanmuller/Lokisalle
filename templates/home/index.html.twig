@@ -2,4 +2,40 @@
 
 {% block body %}
     <h1>Hello Lokisalle</h1>
+    <div class="row">
+        <div class="col-3">
+        </div>
+        <div class="col-9">
+            {# Build one row #}
+                <div class="card-deck">
+            {% for room in rooms %}
+                {% if loop.index0 is divisible by(3) %}
+                
+                </div>
+                <br>
+                <div class="card-deck">
+                {% endif %}
+                    {# Build one card #}
+                    <div class="card">
+                        <img class="card-img-top" src="" alt="Card image cap">
+                        <div class="card-body">
+                            <div class="row">
+                                <a href="" class="card-title">{{ room.title }}</a>
+                                
+                            </div>
+                            <p class="card-text">{{ room.description }}</p>
+                            {# product arrivalDate #}
+                            {# product departureDate #}
+                            <div class="row">
+                                {# room.opninions #}
+                                <a href=""><i class="fa fa-search"></i> Voir</a>
+                            </div>
+                        </div>
+                    </div>
+
+            {% endfor %}
+            
+            </div>
+        </div>
+    </div>
 {% endblock %}
