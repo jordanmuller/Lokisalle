@@ -193,7 +193,7 @@ class Room
         return $this->opinions;
     }
 
-    public function getAvgMarks(): int
+    public function getAvgMarks(): ?int
     {
         $opinions = $this->opinions->toArray();
         $count = count($opinions);
@@ -201,6 +201,8 @@ class Room
         foreach ($opinions as $opinion) {
             $sum += $opinion->getMark();
         }
-        return (int) round($sum/$count);
+        return (0 !== $count) 
+            ? (int) round($sum/$count) 
+            : null;
     }
 }
