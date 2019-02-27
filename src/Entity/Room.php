@@ -3,21 +3,22 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\RoomRepository")
  */
 class Room
 {
-    const CATEGORIES = ['meeting', 'training', 'office'];
+    public const CATEGORIES = ['meeting', 'training', 'office'];
 
-    const CAT_TRANS = [
+    public const CAT_TRANS = [
         'meeting' => 'Réunion',
         'training' => 'Formation',
         'office' => 'Bureau'
     ];
 
-    const CITIES = ['Paris', 'Lyon', 'Marseille'];
+    public const CITIES = ['Paris', 'Lyon', 'Marseille'];
 
     /**
      * @ORM\Id()
@@ -70,6 +71,16 @@ class Room
      * @ORM\Column(type="string", length=10)
      */
     private $category;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Opinion", mappedBy="room")
+     */
+    private $opinions;
+
+    public function __construct()
+    {
+        $this->opinions = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -175,5 +186,21 @@ class Room
             $this->category = $category;
         }
         return $this;
+    }
+
+    public function getOpinions(): ?ArrayCollection
+    {
+        return $this->opinions;
+    }
+
+    public function getAvgMarks(): int
+    {
+        $opinions = $this->opinions->toArray();
+        $count = count($opinions);
+        $sum = 0;
+        foreach ($opinions as $opinion) {
+            $sum += $opinion->getMark();
+        }
+        return (int) round($sum/$count);
     }
 }

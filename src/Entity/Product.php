@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Product
 {
-    const STATES = ['available', 'booked'];
+    public const STATES = ['available', 'booked'];
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -38,7 +38,7 @@ class Product
     private $state = self::STATES[0];
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Room")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Room")
      */
     private $room;
 

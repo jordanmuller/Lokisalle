@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fiche détails - {{ room.title }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('room-show') }}
+{% endblock %}
+
+{% block body %}
+    <div class="row show-header">
+        <div>
+            <h1>{{ room.title }}</h1>
+            {{ room.avgMarks }}
+        </div>
+        {% if is_granted('ROLE_ADMIN') %}
+            <a href="" class="btn btn-success">Réserver</a>
+        {% endif %}
+    </div>
+    <div class="row">
+        <div class="col-7">
+        </div>
+        <div class="col-5">
+            <div class="row">
+                <h5>Description</h5>
+                <p>{{ room.description }}</p>
+            </div>
+            <div class="row">
+                <h5>Localisation</h5>
+            </div>
+        </div>
+    </div>
+
+    <h5>Informations complémentaires</h5>
+    <div class="row">    
+        <div class="col-4">
+            <p><i class="far fa-calendar-alt"></i> Arrivée: </p>
+            <p><i class="fas fa-calendar-alt"></i> Départ: </p>
+        </div>
+        <div class="col-3">
+            <p><i class="fas fa-users"></i> Capacité: {{ room.capacity }}</p>
+            <p><i class="fas fa-folder-open"></i> Catégorie: {{ room.category }}</p> 
+        </div>
+        <div class="col-5">
+            <p><i class="fas fa-map-marker-alt"></i> Adresse: {{ room.address }}</p>
+            <p><i class="fas fa-euro-sign"></i> Prix</p>
+        </div>
+    </div>
+
+    <h3>Autres produits</h3>
+    <div class="row">
+    </div>
+    <hr>
+    <div class="row show-footer">
+        <a href="">Déposer un commentaire et une note</a>
+        <a href="{{ path('home') }}">Retour vers le catalogue</a>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('room-show') }}
+{% endblock %}

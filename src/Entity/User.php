@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
  */
 class User implements UserInterface
 {
-    const CIVILITIES = ['h', 'f'];
+    public const CIVILITIES = ['h', 'f'];
     
     /**
      * @ORM\Id()
@@ -68,6 +68,12 @@ class User implements UserInterface
     public function getId(): ?int
     {
         return $this->id;
+    }
+
+    public function setId(int $id): self
+    {
+        $this->id = $id;
+        return $this;
     }
 
     public function getEmail(): ?string

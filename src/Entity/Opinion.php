@@ -33,12 +33,12 @@ class Opinion
     private $registeredDate;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\User")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User")
      */
     private $user;
 
     /**
-     * @ORM\OneToOne(targetEntity="App\Entity\Room")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Room", inversedBy="opinions")
      */
     private $room;
 

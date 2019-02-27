@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Gestion des salles</h1>
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Titre</th>
+                <th scope="col">Description</th>
+                <th scope="col">photo</th>
+                <th scope="col">Pays</th>
+                <th scope="col">Ville</th>
+                <th scope="col">Adresse</th>
+                <th scope="col">CP</th>
+                <th scope="col">Capacité</th>
+                <th scope="col">Catégories</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for room in rooms %}
+            <tr>
+                <th scope="row">{{ room.id }}</th>
+                <td>{{ room.title }}</td>
+                <td>{{ room.description|truncate(30) }}</td>
+                <td>{{ room.picture }}</td>
+                <td>{{ room.country }}</td>
+                <td>{{ room.city }}</td>
+                <td>{{ room.address }}</td>
+                <td>{{ room.postalCode }}</td>
+                <td>{{ room.capacity }}</td>
+                <td>{{ room.category }}</td>
+                <td>
+                    <a href="{{ path('room_show', {id: room.id}) }}"><i class="fas fa-search"></i></a>
+                    <a href=""><i class="fas fa-edit"></i></a>
+                    <a href=""><i class="fas fa-trash-alt"></i></a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

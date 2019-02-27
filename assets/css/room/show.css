@@ -1,0 +1,19 @@
+div.show-header {
+    justify-content: space-between;
+    padding: 0 0.8em;
+}
+
+div.show-header h1 {
+    display: inline-block;
+}
+
+div.show-header a {
+    height: 2.4em;
+    width: 9em;
+}
+
+
+div.show-footer {
+    justify-content: space-between;
+    padding: 0 0.8em;
+}
