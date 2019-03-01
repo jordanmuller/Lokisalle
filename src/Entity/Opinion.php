@@ -44,7 +44,7 @@ class Opinion
 
     public function __construct()
     {
-        $this->registeredDate = new \Datetime();
+        $this->registeredDate = new \DateTime();
     }
 
     public function getId(): ?int

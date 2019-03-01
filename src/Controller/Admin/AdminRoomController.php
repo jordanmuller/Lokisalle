@@ -19,8 +19,8 @@ class AdminRoomController extends AbstractController
     private $paginator;
 
     public function __construct(
-        ObjectManager $em, 
-        RoomRepository $roomRepo, 
+        ObjectManager $em,
+        RoomRepository $roomRepo,
         PaginatorInterface $paginator
     ) {
         $this->em = $em;
@@ -37,7 +37,7 @@ class AdminRoomController extends AbstractController
     {
         $rooms = $this->paginator->paginate(
             $this->roomRepo->findAll(),
-            $request->query->getInt('page', 1), 
+            $request->query->getInt('page', 1),
             3
         );
 

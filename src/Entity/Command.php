@@ -33,7 +33,7 @@ class Command
 
     public function __construct()
     {
-        $this->registeredDate = new \Datetime();
+        $this->registeredDate = new \DateTime();
     }
 
     public function getId(): ?int

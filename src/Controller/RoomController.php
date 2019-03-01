@@ -17,9 +17,7 @@ class RoomController extends AbstractController
      */
     public function show(Room $room)
     {
-        $avg = $room->getAvgMarks();
-        return $this->render('room/show.html.twig',
-            ['room' => $room]
-        );
+        // $avg = $room->getAvgMarks();
+        return $this->render('room/show.html.twig', ['room' => $room]);
     }
 }

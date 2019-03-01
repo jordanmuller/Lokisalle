@@ -51,7 +51,7 @@ class AppFixtures extends Fixture
         $manager->persist($user);
 
         for ($i = 0; $i < 100; $i++) {
-            $rand = rand(0, 1); 
+            $rand = rand(0, 1);
             $user = new User();
             $user
                 ->setEmail($faker->email)

@@ -201,8 +201,8 @@ class Room
         foreach ($opinions as $opinion) {
             $sum += $opinion->getMark();
         }
-        return (0 !== $count) 
-            ? (int) round($sum/$count) 
+        return (0 !== $count)
+            ? (int) round($sum/$count)
             : null;
     }
 }
