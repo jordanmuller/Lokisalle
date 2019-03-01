@@ -45,7 +45,7 @@ class Room
     /**
      * @ORM\Column(type="string", length=20)
      */
-    private $country;
+    private $country = 'France';
 
     /**
      * @ORM\Column(type="string", length=20)

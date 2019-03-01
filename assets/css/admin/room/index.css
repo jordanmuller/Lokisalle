@@ -12,3 +12,7 @@ td.admin-button button {
 	cursor: pointer;
     outline: inherit;
 }
+
+label {
+	font-weight: bold;
+}

@@ -11,6 +11,7 @@ use App\Entity\Room;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
+use App\Form\RoomType;
 
 class AdminRoomController extends AbstractController
 {
@@ -48,7 +49,7 @@ class AdminRoomController extends AbstractController
 
     /**
      * @Route(
-     *     "/admin/room/{id}",
+     *     "/admin/room/{?id}",
      *     name="admin_persist_room",
      *     methods="PUT",
      *     requirements={"id": "\d+"}
@@ -56,11 +57,17 @@ class AdminRoomController extends AbstractController
      */
     public function persist(?Room $room): Response
     {
-        if (null === $room) {
-            $room = new Room();
-        }
+        // if (null === $room) {
 
-        return $this->render();
+        // }
+
+        // if (null === $room->getId()) {
+        //     $this->em->persist($room);
+        // }
+        // $this->em->flush();
+        // return new JsonResponse('Room persisted', 200);
+        
+        // return new JsonResponse('Room Persisted failed', 400);
     }
 
     /**
