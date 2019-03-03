@@ -3,7 +3,9 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\RoomRepository")
@@ -24,51 +26,61 @@ class Room
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups("getRoom")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=200)
+     * @Groups("getRoom")
      */
     private $title;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Groups("getRoom")
      */
     private $description;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups("getRoom")
      */
     private $picture;
 
     /**
      * @ORM\Column(type="string", length=20)
+     * @Groups("getRoom")
      */
     private $country = 'France';
 
     /**
      * @ORM\Column(type="string", length=20)
+     * @Groups("getRoom")
      */
     private $city;
 
     /**
      * @ORM\Column(type="string", length=80)
+     * @Groups("getRoom")
      */
     private $address;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups("getRoom")
      */
     private $postalCode;
 
     /**
      * @ORM\Column(type="smallint")
+     * @Groups("getRoom")
      */
     private $capacity;
 
     /**
      * @ORM\Column(type="string", length=10)
+     * @Groups("getRoom")
      */
     private $category;
 
@@ -188,7 +200,7 @@ class Room
         return $this;
     }
 
-    public function getOpinions(): ?ArrayCollection
+    public function getOpinions(): ?PersistentCollection
     {
         return $this->opinions;
     }

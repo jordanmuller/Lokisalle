@@ -11,6 +11,7 @@ Encore
     .addEntry('app', './assets/js/app.js')
     .addEntry('room-show', './assets/js/room/show.js')
     .addEntry('admin-room', './assets/js/admin/room/index.js')
+    .addEntry('admin-room-persist', './assets/js/admin/room/persist.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()

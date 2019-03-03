@@ -1,0 +1,55 @@
+<form method="post" action="{{ path('admin_room_persist') }}" id="persist-room">
+    <input type="hidden" name="_method" value="PUT">
+    <input type="hidden" name="_token" value="{{ csrf_token('persist-room') }}">
+    <div class="row">
+        <div class="col">
+            <div class="form-group">
+                <label for="title">Titre</label>
+                <input type="text" id="title" class="form-control" placeholder="Titre de la salle" value="">
+            </div>
+            <div class="form-group">
+                <label for="description">Description</label>
+                <textarea id="description" class="form-control" rows="3" placeholder="Description de la salle"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="capacity">Capacité</label>
+                <input type="number" id="capacity" class="form-control" placeholder="Capacité de la salle" value="">
+            </div>
+            <div class="form-group">
+                <label for="category">Catégorie</label>
+                <select id="category" class="form-control">
+                    <option value="meeting">Réunion</option>
+                    <option value="office">Bureau</option>
+                    <option value="training">Formation</option>
+                </select>
+            </div>
+        </div>
+        <div class="col">
+            <div class="form-group">
+                <label for="country">Pays</label>
+                <select id="country" class="form-control">
+                    <option value="France">France</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="city">Ville</label>
+                <select id="city" class="form-control">
+                    <option value="Paris">Paris</option>
+                    <option value="Lyon">Lyon</option>
+                    <option value="Marseille">Marseille</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="address">Adresse</label>
+                <textarea id="address" class="form-control" rows="3" placeholder="Adresse de la salle"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="postalCode">Code Postal</label>
+                <input type="number" id="postalCode" class="form-control" placeholder="Code postal de la salle">
+            </div>
+            <div class="d-flex flex-row-reverse">
+                <button type="submit" class="btn btn-primary">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+</form>

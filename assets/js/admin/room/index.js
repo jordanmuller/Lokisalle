@@ -7,7 +7,7 @@ deleteForms.forEach((deleteForm) => {
         e.preventDefault();
     
         const roomId = deleteForm.dataset.deleteRoom;
-        const url = Routing.generate('admin_delete_room', {id: roomId});
+        const url = Routing.generate('admin_room_delete', {id: roomId});
         
         (async (roomId) => {
             let response = await fetch(url, {
@@ -25,3 +25,27 @@ deleteForms.forEach((deleteForm) => {
     });
 });
 
+const updateForms = document.querySelectorAll('.update-form');
+
+updateForms.forEach((updateForm) => {
+    updateForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const roomId = updateForm.dataset.updateRoom;
+        const url = Routing.generate('admin_room_get', {id: roomId});
+
+        (async (roomId) => {
+            let response = await fetch(url, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'appication/json'
+                },
+                data: JSON.stringify(roomId)
+            });
+            if (response.ok) {
+                let data = await response.json();
+                console.log(data);
+            }
+        })();
+    });
+});

@@ -11,22 +11,25 @@ use App\Entity\Room;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
-use App\Form\RoomType;
+use Symfony\Component\Serializer\SerializerInterface;
 
 class AdminRoomController extends AbstractController
 {
     private $em;
     private $roomRepo;
     private $paginator;
+    private $serializer;
 
     public function __construct(
         ObjectManager $em,
         RoomRepository $roomRepo,
-        PaginatorInterface $paginator
+        PaginatorInterface $paginator,
+        SerializerInterface $serializer
     ) {
         $this->em = $em;
         $this->roomRepo = $roomRepo;
         $this->paginator = $paginator;
+        $this->serializer = $serializer;
     }
     /**
      * @Route(
@@ -49,31 +52,48 @@ class AdminRoomController extends AbstractController
 
     /**
      * @Route(
+     *     "/admin/room/{id}",
+     *     name="admin_room_get",
+     *     methods="GET",
+     *     requirements={"id": "\d+"},
+     *     options={"expose": true}
+     * )
+     */
+    public function getRoom(Room $room)
+    {
+        $json = $this->serializer->serialize($room, 'json', ['groups' => 'getRoom']);
+        dump($json);
+        
+        return new JsonResponse($json, 200);
+    }
+
+    /**
+     * @Route(
      *     "/admin/room/{?id}",
-     *     name="admin_persist_room",
+     *     name="admin_room_persist",
      *     methods="PUT",
      *     requirements={"id": "\d+"}
      * )
      */
-    public function persist(?Room $room): Response
+    public function persist(?Room $room): JsonResponse
     {
-        // if (null === $room) {
+        if (null === $room) {
 
-        // }
+        }
 
-        // if (null === $room->getId()) {
-        //     $this->em->persist($room);
-        // }
-        // $this->em->flush();
-        // return new JsonResponse('Room persisted', 200);
+        if (null === $room->getId()) {
+            $this->em->persist($room);
+        }
+        $this->em->flush();
+        return new JsonResponse('Room persisted', 200);
         
-        // return new JsonResponse('Room Persisted failed', 400);
+        return new JsonResponse('Room Persisted failed', 400);
     }
 
     /**
      * @Route(
      *     "/admin/route/{id}",
-     *     name="admin_delete_room",
+     *     name="admin_room_delete",
      *     methods="DELETE",
      *     requirements={"id": "\d+"},
      *     options={"expose": true}
