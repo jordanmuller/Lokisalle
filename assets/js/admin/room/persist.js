@@ -1,17 +1,17 @@
 import '../../../css/admin/room/persist.css';
 
-const form = new FormData(document.querySelector('persist-room'));
+const form = document.querySelector('persist-room');
 
-// form.addEventListener('submit', (e) => {
-//     e.preventDefault();
+const formData = new FormData(form);
 
-//     const url = Routing.generate('admin_persist_room');
+form.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-//     async () => {
-//         let response = await fetch(url, {
+    const url = Routing.generate('admin_persist_room');
 
-//         });
-//     }
+    (async () => {
+        let response = await fetch(url, {
 
-
-// });
+        });
+    })();
+});

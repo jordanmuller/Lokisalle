@@ -62,8 +62,6 @@ class AdminRoomController extends AbstractController
     public function getRoom(Room $room)
     {
         $json = $this->serializer->serialize($room, 'json', ['groups' => 'getRoom']);
-        dump($json);
-        
         return new JsonResponse($json, 200);
     }
 
@@ -72,13 +70,14 @@ class AdminRoomController extends AbstractController
      *     "/admin/room/{?id}",
      *     name="admin_room_persist",
      *     methods="PUT",
-     *     requirements={"id": "\d+"}
+     *     requirements={"id": "\d+"},
+     *     options={"expose": true}
      * )
      */
     public function persist(?Room $room): JsonResponse
     {
         if (null === $room) {
-
+            $room = new Room;
         }
 
         if (null === $room->getId()) {

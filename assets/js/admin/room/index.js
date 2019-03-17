@@ -25,6 +25,20 @@ deleteForms.forEach((deleteForm) => {
     });
 });
 
+
+function hydrateForm(inputs, roomProps, room) {
+    inputs.forEach((input) => {
+        
+        // includes() equals php in_array() function
+        if (input.nodeName === 'select' && roomProps.includes(input.id)) {
+            const select = document.getElementById(input.id);
+            select.options[select.selectedIndex].value = room[input.id];
+        } else if (roomProps.includes(input.id)) {
+            document.getElementById(input.id).value = room[input.id];
+        }
+    });
+}
+
 const updateForms = document.querySelectorAll('.update-form');
 
 updateForms.forEach((updateForm) => {
@@ -35,7 +49,7 @@ updateForms.forEach((updateForm) => {
         const url = Routing.generate('admin_room_get', {id: roomId});
 
         (async (roomId) => {
-            let response = await fetch(url, {
+            const response = await fetch(url, {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'appication/json'
@@ -43,8 +57,19 @@ updateForms.forEach((updateForm) => {
                 data: JSON.stringify(roomId)
             });
             if (response.ok) {
-                let data = await response.json();
-                console.log(data);
+                const room = JSON.parse(await response.json());
+                const inputs = document.querySelectorAll('input');
+                const roomProps = Object.keys(room);
+                const areas = document.querySelectorAll('textarea');
+                const selects = document.querySelectorAll('select');
+
+                hydrateForm(inputs, roomProps, room);
+                hydrateForm(areas, roomProps, room);
+                hydrateForm(selects, roomProps, room);
+                
+                document.querySelector('#persist-submit').textContent = "Modifier";
+
+                // Add a create button to create again
             }
         })();
     });
